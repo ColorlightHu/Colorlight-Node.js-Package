@@ -1,4 +1,4 @@
-var express = require("express");
+/*var express = require("express");
 var app = express();
 var fs = require("fs");
 var request = require("request");
@@ -15,4 +15,8 @@ app.get("/", function(req, res) {
 
 app.listen(3000, function() {
  console.log("Node server is running..");
-});
+});*/
+
+var colorlightController = require('./colorlight-node')
+var colorlightConnector = new colorlightController.colorlightConnector("asd");
+console.log(colorlightConnector.getStatus().version)
