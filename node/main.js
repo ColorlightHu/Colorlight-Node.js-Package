@@ -19,4 +19,4 @@ app.listen(3000, function() {
 
 var colorlightController = require('./colorlight-node')
 var colorlightConnector = new colorlightController.colorlightConnector("asd");
-console.log(colorlightConnector.status.memory.usage)
+console.log(colorlightConnector.status.storage.usage)

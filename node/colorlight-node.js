@@ -33,7 +33,6 @@ class Uptime{
 		return hr + ":" + dmin + ":" + ds + "." + dms
 	}
 }
-
 class Resource{
 	constructor(total,free){
 		this.t = total;
@@ -53,37 +52,71 @@ class Resource{
 	}
 	
 }
+class ProgramStatus{
+	//TODO
+}
 
 class colorlightStatus{
 	constructor(jsonText){
 		this.statusJSON = JSON.parse(jsonText);
 	}
 	get version(){				//Version number of the device firmware
-		return this.statusJSON.info.vername;
+		try{
+			return this.statusJSON.info.vername;
+		} catch(e){
+			console.error(e)
+		} finally {
+			return null
+		}
 	}
 	get serial(){				//Serial number of the device
-		return this.statusJSON.info.serialno;
+		try{
+			return this.statusJSON.info.serialno;
+		} catch(e){
+			console.error(e)
+		} finally {
+			return null
+		}
 	}
 	get model(){				//Model of the device
-		return this.statusJSON.info.model;
+		try{
+			return this.statusJSON.info.model;
+		} catch(e){
+			console.error(e)
+		} finally {
+			return null
+		}
 	}
 	get uptime(){				//Device uptime in miliseconds
-		return new Uptime(this.statusJSON.info.up)
+		try{
+			return new Uptime(this.statusJSON.info.up)
+		} catch(e){
+			console.error(e)
+		} finally {
+			return new Uptime();
+		}
 	}
 	get memory(){
-		return new Resource(this.statusJSON.info.mem.total,this.statusJSON.info.mem.free)
-	}/*
-	this.program = {
-		get name(){
-			
+		try{
+			return new Resource(this.statusJSON.info.mem.total,this.statusJSON.info.mem.free)
+		} catch(e){
+			console.error(e)
+		} finally {
+			return new Resource();
 		}
-		get path(){
-			
+	}
+	get storage(){
+		try{
+			return new Resource(this.statusJSON.info.storage.total,this.statusJSON.info.storage.free)
+		} catch(e){
+			console.error(e);
+		} finally {
+			return new Resource();
 		}
-		get source(){
-			
-		}
-	}*/
+	}
+	get program(){
+		//TODO
+	}
 }
 
 module.exports.colorlightConnector = colorlightConnector;
