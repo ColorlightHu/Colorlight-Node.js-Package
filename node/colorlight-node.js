@@ -3,24 +3,13 @@ class colorlightConnector{
 		this.request = require("request");
 		this.ip=ip;
 		this.laststatus = null;
-		this.onconnect = null;
-		this.oncdisconnect = null;
 	}
 	
-	set onConnect(callback){
-		this.onconnect = callback;
-	}
-	set onDisconnect(callback){
-		this.ondisconnect = callback;
-		
-	}
-	
-	connect(){
+	connect(callback){
 		this.request("http://"+this.ip + "/api/info.json", function(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				this.laststatus = new colorlightStatus(body)
-				console.log(this.laststatus.version);
-				//this.onconnect(this.laststatus)
+				callback(this.laststatus)
 			}
 		});
 	}
@@ -99,38 +88,42 @@ class colorlightStatus{
 	}
 	get model(){				//Model of the device
 		try{
-			return this.statusJSON.info.model;
+			var ret = this.statusJSON.info.model;
 		} catch(e){
 			console.error(e)
+			var ret = null;
 		} finally {
-			return null
+			return ret
 		}
 	}
 	get uptime(){				//Device uptime in miliseconds
 		try{
-			return new Uptime(this.statusJSON.info.up)
+			var ret = new Uptime(this.statusJSON.info.up)
 		} catch(e){
 			console.error(e)
+			var ret = new Uptime();
 		} finally {
-			return new Uptime();
+			return ret
 		}
 	}
 	get memory(){
 		try{
-			return new Resource(this.statusJSON.info.mem.total,this.statusJSON.info.mem.free)
+			var ret = new Resource(this.statusJSON.info.mem.total,this.statusJSON.info.mem.free)
 		} catch(e){
 			console.error(e)
+			var ret = new Resource();
 		} finally {
-			return new Resource();
+			return ret
 		}
 	}
 	get storage(){
 		try{
-			return new Resource(this.statusJSON.info.storage.total,this.statusJSON.info.storage.free)
+			var ret = new Resource(this.statusJSON.info.storage.total,this.statusJSON.info.storage.free)
 		} catch(e){
-			console.error(e);
+			console.error(e)
+			var ret = new Resource();
 		} finally {
-			return new Resource();
+			return ret
 		}
 	}
 	get program(){
