@@ -1,17 +1,35 @@
 class colorlightConnector{
 	constructor(ip){
-		this.request = require("request");
 		this.ip=ip;
-		this.laststatus = null;
+		this.laststatus = new colorlightStatus(null);
+		
+		this.onlostc = null;
 	}
-	
-	connect(callback){
-		this.request("http://"+this.ip + "/api/info.json", function(error, response, body) {
-			if (!error && response.statusCode == 200) {
-				this.laststatus = new colorlightStatus(body)
-				callback(this.laststatus)
+	set onLostConnection(callback){
+		this.onlostc = callback
+	}
+	connect(onConnected,onLostConnection){
+		var onfirstresponse = function(statusm){
+			onConnected(statusm)
+		}
+		var pong = function(statusm){
+			console.log(statusm)
+		}
+		var pingfactory = function(ip,callback){
+			return function(){
+				const request = require("request");
+				request("http://"+ip + "/api/info.json", function(error, response, body) {
+				if (!error && response.statusCode == 200) {
+					callback(new colorlightStatus(body))
+					}
+				});
 			}
-		});
+		}
+		var first = pingfactory(this.ip,pong)
+		setInterval(pingfactory(this.ip,pong), 1000);
+	}
+	onconnected(){
+		
 	}
 	disconnect(){
 		
@@ -19,6 +37,7 @@ class colorlightConnector{
 	get status(){
 		return this.laststatus;
 	}
+	
 	
 }
 
