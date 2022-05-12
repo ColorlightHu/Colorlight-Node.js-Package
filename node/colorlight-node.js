@@ -1,17 +1,34 @@
 class colorlightConnector{
 	constructor(ip){
+		this.request = require("request");
 		this.ip=ip;
-		console.log("colorlightConnector")
+		this.laststatus = null;
+		this.onconnect = null;
+		this.oncdisconnect = null;
+	}
+	
+	set onConnect(callback){
+		this.onconnect = callback;
+	}
+	set onDisconnect(callback){
+		this.ondisconnect = callback;
+		
 	}
 	
 	connect(){
-		
+		this.request("http://"+this.ip + "/api/info.json", function(error, response, body) {
+			if (!error && response.statusCode == 200) {
+				this.laststatus = new colorlightStatus(body)
+				console.log(this.laststatus.version);
+				//this.onconnect(this.laststatus)
+			}
+		});
 	}
 	disconnect(){
 		
 	}
 	get status(){
-		return new colorlightStatus('{"info": {"vername": "1.64.6", "serialno": "CLCC4000A008", "model": "c4", "up":9989856,"mem": {"total": 1073741824, "free": 778567680}}}')
+		return this.laststatus;
 	}
 	
 }
@@ -62,20 +79,22 @@ class colorlightStatus{
 	}
 	get version(){				//Version number of the device firmware
 		try{
-			return this.statusJSON.info.vername;
+			var ret = this.statusJSON.info.vername;
 		} catch(e){
 			console.error(e)
+			var ret = null;
 		} finally {
-			return null
+			return ret
 		}
 	}
 	get serial(){				//Serial number of the device
 		try{
-			return this.statusJSON.info.serialno;
+			var ret = this.statusJSON.info.serialno;
 		} catch(e){
 			console.error(e)
+			var ret = null;
 		} finally {
-			return null
+			return ret
 		}
 	}
 	get model(){				//Model of the device

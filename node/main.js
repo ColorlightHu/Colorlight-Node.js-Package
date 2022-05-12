@@ -18,5 +18,10 @@ app.listen(3000, function() {
 });*/
 
 var colorlightController = require('./colorlight-node')
-var colorlightConnector = new colorlightController.colorlightConnector("asd");
-console.log(colorlightConnector.status.storage.usage)
+var colorlightConnector = new colorlightController.colorlightConnector("192.168.1.37");
+
+colorlightConnector.onConnect = (status)=>{
+	console.log("asd")
+}
+
+colorlightConnector.connect()
