@@ -8,12 +8,13 @@ class colorlightConnector{
 	set onLostConnection(callback){
 		this.onlostc = callback
 	}
-	connect(onConnected,onLostConnection){
-		var onfirstresponse = function(statusm){
+	connect(onConnected,onError,onLostConnection){
+		var ststus = ""
+		var firstpong = function(statusm){
 			onConnected(statusm)
 		}
 		var pong = function(statusm){
-			console.log(statusm.uptime)
+			console.log(statusm.timestamp)
 		}
 		var err = ()=>{
 			console.log("ERR")
@@ -30,8 +31,8 @@ class colorlightConnector{
 				}});
 			}
 		}
-		var first = pingfactory(this.ip,pong)
-		setInterval(pingfactory(this.ip,pong,err), 1000);
+		pingfactory(this.ip,firstpong)()
+		setInterval(pingfactory(this.ip,pong,err), 5000);
 	}
 	disconnect(){
 		
@@ -41,24 +42,6 @@ class colorlightConnector{
 	}
 	
 	
-}
-
-class Uptime{
-	constructor(ms){
-		this.ms = ms
-	}
-	get milis(){
-		return this.ms;
-	}
-	get timestamp() {
-		var dms = this.ms % 1000
-		var s = (this.ms - dms)/1000 
-		var ds = s % 60
-		var min = (s-ds)/60
-		var dmin = min % 60
-		var hr = (min-dmin)/60
-		return hr + ":" + dmin + ":" + ds + "." + dms
-	}
 }
 class Resource{
 	constructor(total,free){
@@ -117,12 +100,22 @@ class colorlightStatus{
 			return ret
 		}
 	}
-	get uptime(){				//Device uptime in miliseconds
+	get millis(){				//Device uptime in milliseconds
 		try{
-			var ret = new Uptime(this.statusJSON.info.up)
+			var ret = this.statusJSON.info.up
 		} catch(e){
 			console.error(e)
-			var ret = new Uptime();
+			var ret = 0;
+		} finally {
+			return ret
+		}
+	}
+	get timestamp(){				//Device uptime in milliseconds
+		try{
+			var ret = require('pretty-ms')(this.statusJSON.info.up)
+		} catch(e){
+			console.error(e)
+			var ret = 0;
 		} finally {
 			return ret
 		}
