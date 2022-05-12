@@ -13,23 +13,25 @@ class colorlightConnector{
 			onConnected(statusm)
 		}
 		var pong = function(statusm){
-			console.log(statusm)
+			console.log(statusm.uptime)
 		}
-		var pingfactory = function(ip,callback){
+		var err = ()=>{
+			console.log("ERR")
+		}
+		var pingfactory = function(ip,onConnect,onError){
 			return function(){
 				const request = require("request");
 				request("http://"+ip + "/api/info.json", function(error, response, body) {
 				if (!error && response.statusCode == 200) {
-					callback(new colorlightStatus(body))
-					}
-				});
+					onConnect(new colorlightStatus(body))
+				}
+				else{
+					onError()
+				}});
 			}
 		}
 		var first = pingfactory(this.ip,pong)
-		setInterval(pingfactory(this.ip,pong), 1000);
-	}
-	onconnected(){
-		
+		setInterval(pingfactory(this.ip,pong,err), 1000);
 	}
 	disconnect(){
 		
