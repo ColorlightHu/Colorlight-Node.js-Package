@@ -25,14 +25,17 @@ class colorlightConnector{
 				request("http://"+ip + "/api/info.json", function(error, response, body) {
 				if (!error && response.statusCode == 200) {
 					onConnect(new colorlightStatus(body))
+					return true;
 				}
 				else{
 					onError()
+					return false;
 				}});
 			}
 		}
-		pingfactory(this.ip,firstpong)()
-		setInterval(pingfactory(this.ip,pong,err), 5000);
+		if(pingfactory(this.ip,firstpong,onError)()){
+			setInterval(pingfactory(this.ip,pong,err), 5000);
+		}
 	}
 	disconnect(){
 		
