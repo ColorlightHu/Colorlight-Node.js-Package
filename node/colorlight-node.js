@@ -1,7 +1,7 @@
-class colorlightConnector{
+class ColorlightConnector{
 	constructor(ip){
 		this.ip=ip;
-		this.laststatus = new colorlightStatus(null);
+		this.laststatus = new ColorlightStatus(null);
 		
 		this.onlostc = null;
 	}
@@ -22,18 +22,20 @@ class colorlightConnector{
 		var pingfactory = function(ip,onConnect,onError){
 			return function(){
 				const request = require("request");
-				request("http://"+ip + "/api/info.json", function(error, response, body) {
-				if (!error && response.statusCode == 200) {
-					onConnect(new colorlightStatus(body))
-					return true;
-				}
-				else{
-					onError()
-					return false;
-				}});
+				request("http://"+ip + "/api/info.json",
+					function(error, response, body) {
+					if (!error && response.statusCode == 200) {
+						onConnect(new ColorlightStatus(body))
+					}
+					else{
+						onError()
+					}
+				});
+				return true;	//TODO
 			}
 		}
-		if(pingfactory(this.ip,firstpong,onError)()){
+		const success = pingfactory(this.ip,firstpong,onError)()
+		if(success){
 			setInterval(pingfactory(this.ip,pong,err), 5000);
 		}
 	}
@@ -46,7 +48,7 @@ class colorlightConnector{
 	
 	
 }
-class Resource{
+class ColorlightResource{
 	constructor(total,free){
 		this.t = total;
 		this.f = free;
@@ -65,11 +67,11 @@ class Resource{
 	}
 	
 }
-class ProgramStatus{
+class ColorlightProgramStatus{
 	//TODO
 }
 
-class colorlightStatus{
+class ColorlightStatus{
 	constructor(jsonText){
 		this.statusJSON = JSON.parse(jsonText);
 	}
@@ -125,20 +127,20 @@ class colorlightStatus{
 	}
 	get memory(){
 		try{
-			var ret = new Resource(this.statusJSON.info.mem.total,this.statusJSON.info.mem.free)
+			var ret = new ColorlightResource(this.statusJSON.info.mem.total,this.statusJSON.info.mem.free)
 		} catch(e){
 			console.error(e)
-			var ret = new Resource();
+			var ret = new ColorlightResource();
 		} finally {
 			return ret
 		}
 	}
 	get storage(){
 		try{
-			var ret = new Resource(this.statusJSON.info.storage.total,this.statusJSON.info.storage.free)
+			var ret = new ColorlightResource(this.statusJSON.info.storage.total,this.statusJSON.info.storage.free)
 		} catch(e){
 			console.error(e)
-			var ret = new Resource();
+			var ret = new ColorlightResource();
 		} finally {
 			return ret
 		}
@@ -148,4 +150,4 @@ class colorlightStatus{
 	}
 }
 
-module.exports.colorlightConnector = colorlightConnector;
+module.exports.colorlightConnector = ColorlightConnector;
