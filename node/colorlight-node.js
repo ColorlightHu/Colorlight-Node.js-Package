@@ -11,6 +11,7 @@ class ColorlightConnector{
 	connect(onConnected,onError,onLostConnection){
 		var ststus = ""
 		var firstpong = function(statusm){
+			//this.laststatus = statusm;
 			onConnected(statusm)
 		}
 		var pong = function(statusm){
