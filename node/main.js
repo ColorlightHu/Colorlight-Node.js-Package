@@ -1,4 +1,16 @@
-var colorlightController = require('./colorlight-node')
+const Connection = require('./colorlight-node').todotestConnection
+const testConnection = new Connection();
+const testController = testConnection.controller;
+
+console.log(testController.info.model)
+console.log(testController.info.serial)
+console.log(testController.info.version)
+
+console.log(testController.status.uptime)
+console.log(testController.status.memory.usage)
+console.log(testController.status.storage.usage)
+
+/*var colorlightController = require('./colorlight-node')
 var colorlightConnector = new colorlightController.colorlightConnector("192.168.1.37");
 
 const onConnected = (status)=>{
@@ -8,4 +20,4 @@ const onConnected = (status)=>{
 colorlightConnector.connect(
 	onConnected,
 	()=>{console.log("Connection failed")},
-	()=>{console.log("Connection lost")})
+	()=>{console.log("Connection lost")})*/

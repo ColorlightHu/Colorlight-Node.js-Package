@@ -1,3 +1,159 @@
+class ColorlightResource{
+	constructor(total,free){
+		this.t = total;
+		this.f = free;
+	}
+	get total(){
+		return this.t;
+	}
+	get free(){
+		return this.f;
+	}
+	get used(){
+		return this.t-this.f;
+	}
+	get usage(){
+		return this.used/this.t;
+	}
+
+}
+
+class ColorlightControllerConnection{ //TODO dummy
+	constructor() {
+		this.controller = new ColorlightController(this)
+	}
+	get infoJSON(){
+		return JSON.parse(
+			'{\n' +
+			'		"info": {' +
+			'			"vername": "1.64.6", ' +
+			'			"serialno": "CLCC4000A008", ' +
+			'			"model": "c4", ' +
+			'			"up": 9989856, ' +
+			'			"mem": {\n' +
+			'				"total": 1073741824, ' +
+			'				"free": 778567680\n' +
+			'			}, ' +
+			'			"storage": {\n' +
+			'				"total": 5878841344, ' +
+			'				"free": 5878644736\n' +
+			'			},' +
+			'			"playing": {\n' +
+			'				"name": "new.vsn", ' +
+			'				"path": "/mnt/sdcard/Android/data/com.color.home/files/Ftp/program", ' +
+			'				"source": "lan" ' +
+			'			}\n' +
+			'		}' +
+			'	}'
+		);
+	}
+	get toastStatusJSON(){
+		return JSON.parse("{\"showProgramToast\": 1}")
+	}
+	get programStatusJSON(){
+		return JSON.parse("{\n" +
+			"\"playing\": {\n" +
+			"\"type\": \"lan\", \"name\": \"new.vsn\" }, \"contents\": [\n" +
+			"{\n" +
+			"\"type\": \"lan\", \"content\": [\n" +
+			"{\n" +
+			"\"name\": \"12345.vsn\"\n" +
+			"\"size\": 7665246, \"md5\": \"882024f3d5869aad992a58fec123a19c\"\n" +
+			"\"publishedmd5\": \"8B2E1E8BE7588F7862A47DA9D7C7F670\" }, {\n" +
+			"\"name\": \"256256.vsn\"\n" +
+			"\"size\": 7665246, \"md5\": \"882024f3d5869aad992a58fec123a19c\"\n" +
+			"\"publishedmd5\": \"8B2E1E8BE7588F7862A47DA9D7C7F670\" }\n" +
+			"]\n" +
+			"}, {\n" +
+			"\"type\": \"usb-synced\", \"content\": [\n" +
+			"{\n" +
+			"\"name\": \"new.vsn\", \"size\": 7665246, \"md5\": \"882024f3d5869aad992a58fec123a19c\"\n" +
+			"\"publishedmd5\": \"8B2E1E8BE7588F7862A47DA9D7C7F670\" }\n" +
+			"]\n" +
+			"}, {\n" +
+			"\"type\": \"usb\", \"content\": [\n" +
+			"{\n" +
+			"\"name\": \"new.vsn\", \"size\": 7665246, \"md5\": \"882024f3d5869aad992a58fec123a19c\"\n" +
+			"\"publishedmd5\": \"8B2E1E8BE7588F7862A47DA9D7C7F670\" }\n" +
+			"]\n" +
+			"}, {\n" +
+			"\"type\": \"lan\", \"content\": [\n" +
+			"{\n" +
+			"\"name\": \"new.vsn\", \"size\": 11454370, \"md5\": \"eb896b2c17d5638f7fbd18db7d3e0c4\"\n" +
+			"\"publishedmd5\": \"8B2E1E8BE7588F7862A47DA9D7C7F670\"\n" +
+			"9\n" +
+			"}\n" +
+			"]\n" +
+			"}\n" +
+			"]\n" +
+			"}")
+	}
+	get networkStatusJSON(){
+		//TODO
+	}
+}
+class ColorlightControllerInfo{
+	constructor(controller) {
+		this.controller = controller;
+	}
+
+	get version(){				//Version number of the device firmware
+		return this.controller.connection.infoJSON.info.vername
+	}
+	get serial(){				//Serial number of the device
+		return this.controller.connection.infoJSON.info.serialno
+	}
+	get model(){				//Model of the device
+		return this.controller.connection.infoJSON.info.model
+	}
+}
+class ColorlightControllerStatus{
+	constructor(controller) {
+		this.controller = controller;
+	}
+
+	get uptime(){				//Device uptime in milliseconds
+		return this.controller.connection.infoJSON.info.up
+	}
+	get memory(){				//Device memory data objet
+		const total = this.controller.connection.infoJSON.info.mem.total
+		const free = this.controller.connection.infoJSON.info.mem.free
+		return new ColorlightResource(total,free);
+	}
+	get storage(){				//Device storage data object
+		const total = this.controller.connection.infoJSON.info.storage.total
+		const free = this.controller.connection.infoJSON.info.storage.free
+		return new ColorlightResource(total,free);
+	}
+}
+class ColorlightControllerProgram{
+	constructor(controller) {
+		this.controller = controller;
+	}
+}
+class ColorlightControllerSettings{
+	constructor(controller) {
+		this.controller = controller;
+	}
+}
+class ColorlightController{
+	constructor(connection) {
+		this.connection = connection;
+	}
+	get info(){
+		return new ColorlightControllerInfo(this)
+	}
+	get status(){
+		return new ColorlightControllerStatus(this)
+	}
+	get program(){
+		return new ColorlightControllerProgram(this)
+	}
+	get settings(){
+		return new ColorlightControllerSettings(this)
+	}
+}
+
 class ColorlightConnector{
 	constructor(ip){
 		this.ip=ip;
@@ -47,25 +203,6 @@ class ColorlightConnector{
 		return this.laststatus;
 	}
 	
-	
-}
-class ColorlightResource{
-	constructor(total,free){
-		this.t = total;
-		this.f = free;
-	}
-	get total(){
-		return this.t;
-	}
-	get free(){
-		return this.f;
-	}
-	get used(){
-		return this.t-this.f;
-	}
-	get usage(){
-		return this.used/this.t;
-	}
 	
 }
 class ColorlightProgramStatus{
@@ -152,3 +289,5 @@ class ColorlightStatus{
 }
 
 module.exports.colorlightConnector = ColorlightConnector;
+
+module.exports.todotestConnection = ColorlightControllerConnection;
