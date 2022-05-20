@@ -1,0 +1,55 @@
+{
+  "playing":
+  {
+    "type": "lan",
+    "name": "new.vsn"
+  },
+  "contents":
+  [
+    {
+      "type": "lan",
+      "content":
+      [
+        {
+          "name": "12345.vsn",
+          "size": 7665246,
+          "md5": "882024f3d5869aad992a58fec123a19c",
+          "publishedmd5": "8B2E1E8BE7588F7862A47DA9D7C7F670"
+        },
+        {
+          "name": "256256.vsn",
+          "size": 7665246,
+          "md5": "882024f3d5869aad992a58fec123a19c",
+          "publishedmd5": "8B2E1E8BE7588F7862A47DA9D7C7F670"
+        }
+      ]
+    },
+    {
+      "type": "usb-synced",
+      "content":
+      [
+        {
+          "name": "new.vsn",
+          "size": 7665246,
+          "md5": "882024f3d5869aad992a58fec123a19c",
+          "publishedmd5": "8B2E1E8BE7588F7862A47DA9D7C7F670"
+        }
+      ]
+    },
+    {
+      "type": "usb",
+      "content": [
+        {
+          "name": "new.vsn",
+          "size": 7665246,
+          "md5": "882024f3d5869aad992a58fec123a19c",
+          "publishedmd5": "8B2E1E8BE7588F7862A47DA9D7C7F670"
+        }
+      ]
+    },
+    {
+      "type": "lan",
+      "content": [
+        {
+          "name": "new.vsn", "size": 11454370, "md5": "eb896b2c17d5638f7fbd18db7d3e0c4",
+          "publishedmd5": "8B2E1E8BE7588F7862A47DA9D7C7F670",

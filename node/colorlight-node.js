@@ -17,6 +17,32 @@ class ColorlightResource{
 	}
 
 }
+class ColorlightProgramType{
+	constructor(name) {
+		this.name = name;
+	}
+
+	static lan = new ColorlightProgramType("lan")
+	static internet = new ColorlightProgramType("internet")
+	static usb = new ColorlightProgramType("usb")
+	static usb_synced = new ColorlightProgramType("usb_synced")
+
+}
+class ColorlightProgram{
+	get type(){
+
+	}
+	get name(){
+
+	}
+	get path(){
+
+	}
+	get size(){
+
+	}
+
+}
 
 class ColorlightControllerConnection{ //TODO dummy
 	constructor() {
@@ -130,6 +156,7 @@ class ColorlightControllerProgram{
 	constructor(controller) {
 		this.controller = controller;
 	}
+
 }
 class ColorlightControllerSettings{
 	constructor(controller) {
