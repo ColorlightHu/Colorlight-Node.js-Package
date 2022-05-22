@@ -1,3 +1,5 @@
+const request = require("request");
+
 class ColorlightResource{
 	constructor(total,free){
 		this.t = total;
@@ -68,8 +70,11 @@ class ColorlightProgram{
 class ColorlightControllerConnection{ //TODO dummy
 	constructor() {
 		this.controller = new ColorlightController(this)
+		this.statusJSONText = ""
+		this.programJSONText = ""
 	}
 	get infoJSON(){
+		const text =
 		return JSON.parse()		//TODO
 	}
 	get toastStatusJSON(){
@@ -82,8 +87,30 @@ class ColorlightControllerConnection{ //TODO dummy
 								//TODO
 	}
 
-	static connect(ip){
-		return new ColorlightControllerConnection();
+	pong(body){
+		//this.statusJSONText = "body";
+		console.log(this)
+	}
+
+	static connect(ip,onConnected,onError){
+		/*const pingfactory = function(ip,onConnect,onError){
+			return function(){
+				const request = require("request");
+				request("http://"+ip + "/api/info.json", responseHandlerFactory(onConnect,onError));
+			}
+		}*/
+
+		const connector = new ColorlightControllerConnection();
+
+		const firstpong = function(body){
+			onConnected()
+		}
+		const error = ()=>{
+			console.log("ERR")
+		}
+		requestFactory(ip,"info.json",responseHandlerFactory(connector.pong,onError))
+		//pingfactory(ip,connector.pong,onError)()
+		return connector
 	}
 }
 class ColorlightControllerInfo{		// Static information about the controller device (firmware, serial, model)
@@ -179,7 +206,7 @@ class ColorlightController{
 /*
 * @deprecated replaced with ColorlightControllerConnection
 * */
-class ColorlightConnector{
+/*class ColorlightConnector{
 	constructor(ip){
 		console.error("deprecated replaced with ColorlightControllerConnection")
 		this.ip=ip;
@@ -191,7 +218,6 @@ class ColorlightConnector{
 		this.onlostc = callback
 	}
 	connect(onConnected,onError,onLostConnection){
-		var ststus = ""
 		var firstpong = function(statusm){
 			//this.laststatus = statusm;
 			onConnected(statusm)
@@ -230,7 +256,7 @@ class ColorlightConnector{
 	}
 	
 	
-}
+}*/
 
 /*
 * @deprecated replaced with ColorlightControllerStatus
@@ -315,6 +341,29 @@ class ColorlightStatus{
 	}
 }
 
-module.exports.colorlightConnector = ColorlightConnector;
+//module.exports.colorlightConnector = ColorlightConnector;
 
-module.exports.todotestConnection = ColorlightControllerConnection;
+function responseHandlerFactory(onOk,onError){
+	return new Promise((error,response,body)=>{
+		if (!error && response.statusCode == 200) {
+			onOk(body);
+
+		}
+		else{
+			onError(error)
+		}
+	})
+}
+function requestFactory(ip,api,responseHandler){
+	return new Promise(()=>{
+		const request = require("request");
+		request("http://"+ip + "/api/"+api, responseHandler);
+	})
+}
+
+function getInfoJSON(){
+	
+	return new Promise
+}
+
+module.exports = ColorlightControllerConnection;
