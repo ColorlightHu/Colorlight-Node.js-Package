@@ -1,0 +1,35 @@
+{
+  "contents": [
+    {
+      "content": [
+        {
+          "ableToEdit": false,
+          "lastModifiedTime": 1653232459000,
+          "md5": "",
+          "name": "TestProgram0.vsn",
+          "publishedmd5": "",
+          "size": 9030
+        },
+        {
+          "ableToEdit": false,
+          "lastModifiedTime": 1653232433000,
+          "md5": "",
+          "name": "TestProgram1.vsn",
+          "publishedmd5": "",
+          "size": 6015
+        }
+      ],
+      "type": "lan"
+    },
+    {
+      "content": [],
+      "ressize": 0,
+      "type": "internet",
+      "unused": 0
+    }
+  ],
+  "playing": {
+    "name": "TestProgram0.vsn",
+    "type": "lan"
+  }
+}

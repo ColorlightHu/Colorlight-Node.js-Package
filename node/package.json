@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/ColorlightHu/Colorlight-Node.js-Package/issues"
   },
-  "homepage": "https://github.com/ColorlightHu/Colorlight-Node.js-Package#readme"
+  "homepage": "https://github.com/ColorlightHu/Colorlight-Node.js-Package#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "pretty-ms": "^7.0.1",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0"
+  }
 }
