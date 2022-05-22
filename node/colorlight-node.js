@@ -140,35 +140,35 @@ class ColorlightControllerConnection{ //TODO dummy
 		//TODO
 	}
 }
-class ColorlightControllerInfo{
+class ColorlightControllerInfo{		// Static information about the controller device (firmware, serial, model)
 	constructor(controller) {
 		this.controller = controller;
 	}
 
-	get version(){				//Version number of the device firmware
+	get version(){					// Version number of the device firmware
 		return this.controller.connection.infoJSON.info.vername
 	}
-	get serial(){				//Serial number of the device
+	get serial(){					// Serial number of the device
 		return this.controller.connection.infoJSON.info.serialno
 	}
-	get model(){				//Model of the device
+	get model(){					// Model of the device
 		return this.controller.connection.infoJSON.info.model
 	}
 }
-class ColorlightControllerStatus{
+class ColorlightControllerStatus{	// Dynamic status information about the device (uptime, memory, storage)
 	constructor(controller) {
 		this.controller = controller;
 	}
 
-	get uptime(){				//Device uptime in milliseconds
+	get uptime(){					// Device uptime in milliseconds
 		return this.controller.connection.infoJSON.info.up
 	}
-	get memory(){				//Device memory data objet
+	get memory(){					// Device memory data objet
 		const total = this.controller.connection.infoJSON.info.mem.total
 		const free = this.controller.connection.infoJSON.info.mem.free
 		return new ColorlightResource(total,free);
 	}
-	get storage(){				//Device storage data object
+	get storage(){					// Device storage data object
 		const total = this.controller.connection.infoJSON.info.storage.total
 		const free = this.controller.connection.infoJSON.info.storage.free
 		return new ColorlightResource(total,free);
