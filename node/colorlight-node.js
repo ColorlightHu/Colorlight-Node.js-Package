@@ -366,3 +366,4 @@ class ColorlightStatus{
 module.exports.colorlightConnector = ColorlightConnector;
 
 module.exports.todotestConnection = ColorlightControllerConnection;
+module.exports.ColorlightController = ColorlightController;
