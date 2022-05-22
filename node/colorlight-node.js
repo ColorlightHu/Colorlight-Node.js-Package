@@ -47,15 +47,11 @@ class ColorlightProgramType{
 class ColorlightProgram{
 	constructor(programJSON,type) {
 		this.programJSON = programJSON
-		this.programType = type;
+		this.programJSON.type = type;
 	}
 
 	get type(){
-		if(this.type === undefined){
-			return ColorlightProgramType.read(this.programJSON.type)
-		}else{
-			return ColorlightProgramType.read(this.programType)
-		}
+		return ColorlightProgramType.read(this.programType)
 	}
 	get name(){
 		return this.programJSON.name
