@@ -112,3 +112,19 @@ describe("Status processing",() =>{
         expect(controller.status.storage.usage).toEqual(0.00003344332471238741)
     })
 })
+
+describe("Program list processing",() =>{
+    test("Active program name",() =>{
+        expect(controller.program.activeProgram.name).toBe("TestProgram0.vsn")
+    })
+    test("Active program type",() =>{
+        expect(controller.program.activeProgram.type).toBe("lan")
+    })
+    test("ProgramNameList",() =>{
+        expect(controller.program.programNameList).toEqual(["TestProgram0.vsn","TestProgram1.vsn"])
+    })
+    /*test("",() =>{
+        expect(controller.program.).toBe()
+    })*/
+})
+
