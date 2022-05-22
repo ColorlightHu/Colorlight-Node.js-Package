@@ -70,74 +70,20 @@ class ColorlightControllerConnection{ //TODO dummy
 		this.controller = new ColorlightController(this)
 	}
 	get infoJSON(){
-		return JSON.parse(
-			'{\n' +
-			'		"info": {' +
-			'			"vername": "1.64.6", ' +
-			'			"serialno": "CLCC4000A008", ' +
-			'			"model": "c4", ' +
-			'			"up": 9989856, ' +
-			'			"mem": {\n' +
-			'				"total": 1073741824, ' +
-			'				"free": 778567680\n' +
-			'			}, ' +
-			'			"storage": {\n' +
-			'				"total": 5878841344, ' +
-			'				"free": 5878644736\n' +
-			'			},' +
-			'			"playing": {\n' +
-			'				"name": "new.vsn", ' +
-			'				"path": "/mnt/sdcard/Android/data/com.color.home/files/Ftp/program", ' +
-			'				"source": "lan" ' +
-			'			}\n' +
-			'		}' +
-			'	}'
-		);
+		return JSON.parse()		//TODO
 	}
 	get toastStatusJSON(){
-		return JSON.parse("{\"showProgramToast\": 1}")
+		return JSON.parse()		//TODO
 	}
 	get programStatusJSON(){
-		return JSON.parse(
-			"{\n" +
-			"    \"contents\": [\n" +
-			"        {\n" +
-			"            \"content\": [\n" +
-			"                {\n" +
-			"                    \"ableToEdit\": false,\n" +
-			"                    \"lastModifiedTime\": 1653232459000,\n" +
-			"                    \"md5\": \"\",\n" +
-			"                    \"name\": \"TestProgram0.vsn\",\n" +
-			"                    \"publishedmd5\": \"\",\n" +
-			"                    \"size\": 9030\n" +
-			"                },\n" +
-			"                {\n" +
-			"                    \"ableToEdit\": false,\n" +
-			"                    \"lastModifiedTime\": 1653232433000,\n" +
-			"                    \"md5\": \"\",\n" +
-			"                    \"name\": \"TestProgram1.vsn\",\n" +
-			"                    \"publishedmd5\": \"\",\n" +
-			"                    \"size\": 6015\n" +
-			"                }\n" +
-			"            ],\n" +
-			"            \"type\": \"lan\"\n" +
-			"        },\n" +
-			"        {\n" +
-			"            \"content\": [],\n" +
-			"            \"ressize\": 0,\n" +
-			"            \"type\": \"internet\",\n" +
-			"            \"unused\": 0\n" +
-			"        }\n" +
-			"    ],\n" +
-			"    \"playing\": {\n" +
-			"        \"name\": \"TestProgram0.vsn\",\n" +
-			"        \"type\": \"lan\"\n" +
-			"    }\n" +
-			"}"
-		)
+		return JSON.parse()		//TODO
 	}
 	get networkStatusJSON(){
-		//TODO
+								//TODO
+	}
+
+	static connect(ip){
+		return new ColorlightControllerConnection();
 	}
 }
 class ColorlightControllerInfo{		// Static information about the controller device (firmware, serial, model)
@@ -229,8 +175,13 @@ class ColorlightController{
 	}
 }
 
+
+/*
+* @deprecated replaced with ColorlightControllerConnection
+* */
 class ColorlightConnector{
 	constructor(ip){
+		console.error("deprecated replaced with ColorlightControllerConnection")
 		this.ip=ip;
 		this.laststatus = new ColorlightStatus(null);
 		
@@ -280,12 +231,13 @@ class ColorlightConnector{
 	
 	
 }
-class ColorlightProgramStatus{
-	//TODO
-}
 
+/*
+* @deprecated replaced with ColorlightControllerStatus
+* */
 class ColorlightStatus{
 	constructor(jsonText){
+		console.error("deprecated replaced with ColorlightControllerStatus")
 		this.statusJSON = JSON.parse(jsonText);
 	}
 	get version(){				//Version number of the device firmware
@@ -366,4 +318,3 @@ class ColorlightStatus{
 module.exports.colorlightConnector = ColorlightConnector;
 
 module.exports.todotestConnection = ColorlightControllerConnection;
-module.exports.ColorlightController = ColorlightController;
