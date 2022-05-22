@@ -45,12 +45,17 @@ class ColorlightProgramType{
 
 }
 class ColorlightProgram{
-	constructor(programJSON) {
+	constructor(programJSON,type) {
 		this.programJSON = programJSON
+		this.programType = type;
 	}
 
 	get type(){
-		return ColorlightProgramType.read(this.programJSON.type)
+		if(this.type === undefined){
+			return ColorlightProgramType.read(this.programJSON.type)
+		}else{
+			return ColorlightProgramType.read(this.programType)
+		}
 	}
 	get name(){
 		return this.programJSON.name
@@ -182,7 +187,26 @@ class ColorlightControllerProgram{
 		return new ColorlightProgram(this.controller.connection.programStatusJSON.playing)
 	}
 	get programList(){
-		const programListJSON = this.controller.connection.programStatusJSON.contents
+		const programListListJSON = this.controller.connection.programStatusJSON.contents
+
+		const programList = [];
+
+		for(let i=0; i<programListListJSON.length;i++){
+			const programListJSON = programListListJSON[i].content
+			const type = programListListJSON[i].type
+			for (let j=0; j<programListJSON.length;j++){
+				programList.push(new ColorlightProgram(programListJSON[j],type))
+			}
+		}
+		return programList
+	}
+	get programNameList(){
+		const pl = this.programList;
+		const nameList = []
+		for(let i = 0; i < pl.length; i++){
+			nameList.push(pl[i].name);
+		}
+		return nameList;
 	}
 
 }

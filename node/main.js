@@ -11,6 +11,11 @@ console.log(testController.status.memory.usage)
 console.log(testController.status.storage.usage)
 
 console.log(testController.program.activeProgram.name)
+const programNameList = testController.program.programNameList
+for(let i = 0; i < programNameList.length; i++){
+    console.log(programNameList[i])
+}
+console.log(testController.program.programList)
 
 /*var colorlightController = require('./colorlight-node')
 var colorlightConnector = new colorlightController.colorlightConnector("192.168.1.37");
