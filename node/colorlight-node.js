@@ -22,25 +22,45 @@ class ColorlightProgramType{
 		this.name = name;
 	}
 
+	static stop = new ColorlightProgramType("stop")
 	static lan = new ColorlightProgramType("lan")
 	static internet = new ColorlightProgramType("internet")
 	static usb = new ColorlightProgramType("usb")
 	static usb_synced = new ColorlightProgramType("usb_synced")
 
+	static read(text){
+		switch (text){
+			case "stop":
+				return this.stop;
+			case "lan":
+				return this.lan;
+			case "internet":
+				return this.internet;
+			case "usb":
+				return this.usb;
+			case "usb-synced":
+				return this.usb_synced;
+		}
+	}
+
 }
 class ColorlightProgram{
-	get type(){
+	constructor(programJSON) {
+		this.programJSON = programJSON
+	}
 
+	get type(){
+		return ColorlightProgramType.read(this.programJSON.type)
 	}
 	get name(){
-
+		return this.programJSON.name
 	}
-	get path(){
+	/*get path(){
 
 	}
 	get size(){
 
-	}
+	}*/
 
 }
 
@@ -77,42 +97,43 @@ class ColorlightControllerConnection{ //TODO dummy
 		return JSON.parse("{\"showProgramToast\": 1}")
 	}
 	get programStatusJSON(){
-		return JSON.parse("{\n" +
-			"\"playing\": {\n" +
-			"\"type\": \"lan\", \"name\": \"new.vsn\" }, \"contents\": [\n" +
+		return JSON.parse(
 			"{\n" +
-			"\"type\": \"lan\", \"content\": [\n" +
-			"{\n" +
-			"\"name\": \"12345.vsn\"\n" +
-			"\"size\": 7665246, \"md5\": \"882024f3d5869aad992a58fec123a19c\"\n" +
-			"\"publishedmd5\": \"8B2E1E8BE7588F7862A47DA9D7C7F670\" }, {\n" +
-			"\"name\": \"256256.vsn\"\n" +
-			"\"size\": 7665246, \"md5\": \"882024f3d5869aad992a58fec123a19c\"\n" +
-			"\"publishedmd5\": \"8B2E1E8BE7588F7862A47DA9D7C7F670\" }\n" +
-			"]\n" +
-			"}, {\n" +
-			"\"type\": \"usb-synced\", \"content\": [\n" +
-			"{\n" +
-			"\"name\": \"new.vsn\", \"size\": 7665246, \"md5\": \"882024f3d5869aad992a58fec123a19c\"\n" +
-			"\"publishedmd5\": \"8B2E1E8BE7588F7862A47DA9D7C7F670\" }\n" +
-			"]\n" +
-			"}, {\n" +
-			"\"type\": \"usb\", \"content\": [\n" +
-			"{\n" +
-			"\"name\": \"new.vsn\", \"size\": 7665246, \"md5\": \"882024f3d5869aad992a58fec123a19c\"\n" +
-			"\"publishedmd5\": \"8B2E1E8BE7588F7862A47DA9D7C7F670\" }\n" +
-			"]\n" +
-			"}, {\n" +
-			"\"type\": \"lan\", \"content\": [\n" +
-			"{\n" +
-			"\"name\": \"new.vsn\", \"size\": 11454370, \"md5\": \"eb896b2c17d5638f7fbd18db7d3e0c4\"\n" +
-			"\"publishedmd5\": \"8B2E1E8BE7588F7862A47DA9D7C7F670\"\n" +
-			"9\n" +
-			"}\n" +
-			"]\n" +
-			"}\n" +
-			"]\n" +
-			"}")
+			"    \"contents\": [\n" +
+			"        {\n" +
+			"            \"content\": [\n" +
+			"                {\n" +
+			"                    \"ableToEdit\": false,\n" +
+			"                    \"lastModifiedTime\": 1653232459000,\n" +
+			"                    \"md5\": \"\",\n" +
+			"                    \"name\": \"TestProgram0.vsn\",\n" +
+			"                    \"publishedmd5\": \"\",\n" +
+			"                    \"size\": 9030\n" +
+			"                },\n" +
+			"                {\n" +
+			"                    \"ableToEdit\": false,\n" +
+			"                    \"lastModifiedTime\": 1653232433000,\n" +
+			"                    \"md5\": \"\",\n" +
+			"                    \"name\": \"TestProgram1.vsn\",\n" +
+			"                    \"publishedmd5\": \"\",\n" +
+			"                    \"size\": 6015\n" +
+			"                }\n" +
+			"            ],\n" +
+			"            \"type\": \"lan\"\n" +
+			"        },\n" +
+			"        {\n" +
+			"            \"content\": [],\n" +
+			"            \"ressize\": 0,\n" +
+			"            \"type\": \"internet\",\n" +
+			"            \"unused\": 0\n" +
+			"        }\n" +
+			"    ],\n" +
+			"    \"playing\": {\n" +
+			"        \"name\": \"TestProgram0.vsn\",\n" +
+			"        \"type\": \"lan\"\n" +
+			"    }\n" +
+			"}"
+		)
 	}
 	get networkStatusJSON(){
 		//TODO
@@ -155,6 +176,13 @@ class ColorlightControllerStatus{
 class ColorlightControllerProgram{
 	constructor(controller) {
 		this.controller = controller;
+	}
+
+	get activeProgram(){
+		return new ColorlightProgram(this.controller.connection.programStatusJSON.playing)
+	}
+	get programList(){
+		const programListJSON = this.controller.connection.programStatusJSON.contents
 	}
 
 }

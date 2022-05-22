@@ -1,55 +1,35 @@
 {
-  "playing":
-  {
-    "type": "lan",
-    "name": "new.vsn"
-  },
-  "contents":
-  [
+  "contents": [
     {
-      "type": "lan",
-      "content":
-      [
+      "content": [
         {
-          "name": "12345.vsn",
-          "size": 7665246,
-          "md5": "882024f3d5869aad992a58fec123a19c",
-          "publishedmd5": "8B2E1E8BE7588F7862A47DA9D7C7F670"
+          "ableToEdit": false,
+          "lastModifiedTime": 1653232459000,
+          "md5": "",
+          "name": "TestProgram0.vsn",
+          "publishedmd5": "",
+          "size": 9030
         },
         {
-          "name": "256256.vsn",
-          "size": 7665246,
-          "md5": "882024f3d5869aad992a58fec123a19c",
-          "publishedmd5": "8B2E1E8BE7588F7862A47DA9D7C7F670"
+          "ableToEdit": false,
+          "lastModifiedTime": 1653232433000,
+          "md5": "",
+          "name": "TestProgram1.vsn",
+          "publishedmd5": "",
+          "size": 6015
         }
-      ]
+      ],
+      "type": "lan"
     },
     {
-      "type": "usb-synced",
-      "content":
-      [
-        {
-          "name": "new.vsn",
-          "size": 7665246,
-          "md5": "882024f3d5869aad992a58fec123a19c",
-          "publishedmd5": "8B2E1E8BE7588F7862A47DA9D7C7F670"
-        }
-      ]
-    },
-    {
-      "type": "usb",
-      "content": [
-        {
-          "name": "new.vsn",
-          "size": 7665246,
-          "md5": "882024f3d5869aad992a58fec123a19c",
-          "publishedmd5": "8B2E1E8BE7588F7862A47DA9D7C7F670"
-        }
-      ]
-    },
-    {
-      "type": "lan",
-      "content": [
-        {
-          "name": "new.vsn", "size": 11454370, "md5": "eb896b2c17d5638f7fbd18db7d3e0c4",
-          "publishedmd5": "8B2E1E8BE7588F7862A47DA9D7C7F670",
+      "content": [],
+      "ressize": 0,
+      "type": "internet",
+      "unused": 0
+    }
+  ],
+  "playing": {
+    "name": "TestProgram0.vsn",
+    "type": "lan"
+  }
+}

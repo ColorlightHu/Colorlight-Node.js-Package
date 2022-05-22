@@ -10,6 +10,8 @@ console.log(testController.status.uptime)
 console.log(testController.status.memory.usage)
 console.log(testController.status.storage.usage)
 
+console.log(testController.program.activeProgram.name)
+
 /*var colorlightController = require('./colorlight-node')
 var colorlightConnector = new colorlightController.colorlightConnector("192.168.1.37");
 

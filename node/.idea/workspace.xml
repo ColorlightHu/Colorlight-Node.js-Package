@@ -36,6 +36,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\szant\Documents\GitHub\Colorlight-Node.js-Package\node" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/main.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
@@ -58,7 +63,8 @@
       <workItem from="1652707550263" duration="988000" />
       <workItem from="1652883127440" duration="1827000" />
       <workItem from="1652979456917" duration="47000" />
-      <workItem from="1653057832607" duration="4239000" />
+      <workItem from="1653057832607" duration="7620000" />
+      <workItem from="1653230231926" duration="2491000" />
     </task>
     <servers />
   </component>
