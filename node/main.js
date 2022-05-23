@@ -1,9 +1,9 @@
-const ColorlightConnector = require('./colorlight-node')
+/* ColorlightConnector = require('./colorlight-node')
 
 const connector = ColorlightConnector.connect("192.168.1.37",()=>{console.log("Connected")},()=>{console.log("Error")})
 
 
-console.log(connector)
+console.log(connector)*/
 
 /*var colorlightController = require('./colorlight-node')
 var colorlightConnector = new colorlightController.colorlightConnector("192.168.1.37");
@@ -16,3 +16,10 @@ colorlightConnector.connect(
 	onConnected,
 	()=>{console.log("Connection failed")},
 	()=>{console.log("Connection lost")})*/
+
+
+const ColorlightConnection = require('./colorlight-node').connection;
+const connection = new ColorlightConnection();
+const controller = connection.controller;
+
+console.log(controller.info.serial)

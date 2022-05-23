@@ -49,7 +49,7 @@
       <recent name="C:\Users\szant\Documents\GitHub\Colorlight-Node.js-Package\node" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.Program list processing">
+  <component name="RunManager" selected="Node.js.main.js">
     <configuration name="Info processing" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -97,11 +97,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.main.js" />
         <item itemvalue="Jest.Program list processing" />
         <item itemvalue="Jest.Status processing" />
         <item itemvalue="Jest.Info processing" />
         <item itemvalue="Node.js.colorlight-node.test.js" />
-        <item itemvalue="Node.js.main.js" />
       </list>
     </recent_temporary>
   </component>
@@ -119,7 +119,7 @@
       <workItem from="1652979456917" duration="47000" />
       <workItem from="1653057832607" duration="7620000" />
       <workItem from="1653230231926" duration="10168000" />
-      <workItem from="1653308059056" duration="120000" />
+      <workItem from="1653308059056" duration="1376000" />
     </task>
     <servers />
   </component>

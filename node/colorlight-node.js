@@ -1,4 +1,4 @@
-const request = require("request");
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 class ColorlightResource{
 	constructor(total,free){
@@ -67,14 +67,20 @@ class ColorlightProgram{
 
 }
 
-class ColorlightControllerConnection{ //TODO dummy
+class ColorlightControllerConnection{
 	constructor() {
 		this.controller = new ColorlightController(this)
-		this.statusJSONText = ""
-		this.programJSONText = ""
 	}
 	get infoJSON(){
-		return JSON.parse()		//TODO
+		const request = new XMLHttpRequest();
+		request.open('GET', 'http://192.168.8.127/api/info.json', false);  // `false` makes the request synchronous
+		request.send(null);
+
+		if (request.status === 200) {
+			return JSON.parse(request.responseText);
+		}else {
+			//TODO
+		}
 	}
 	get toastStatusJSON(){
 		return JSON.parse()		//TODO
