@@ -74,7 +74,6 @@ class ColorlightControllerConnection{ //TODO dummy
 		this.programJSONText = ""
 	}
 	get infoJSON(){
-		const text =
 		return JSON.parse()		//TODO
 	}
 	get toastStatusJSON(){
@@ -366,4 +365,5 @@ function getInfoJSON(){
 	return new Promise
 }
 
-module.exports = ColorlightControllerConnection;
+module.exports.connection = ColorlightControllerConnection;
+module.exports.controller = ColorlightController;

@@ -29,26 +29,66 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/szant/Documents/GitHub/Colorlight-Node.js-Package/node&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/szant/Documents/GitHub/Colorlight-Node.js-Package/node",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/Users/szant/Documents/GitHub/Colorlight-Node.js-Package/node/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\szant\Documents\GitHub\Colorlight-Node.js-Package\node" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.colorlight-node.test.js">
+  <component name="RunManager" selected="Jest.Program list processing">
+    <configuration name="Info processing" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/colorlight-node.test.js" />
+      <test-names>
+        <test-name value="Info processing" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Program list processing" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/colorlight-node.test.js" />
+      <test-names>
+        <test-name value="Program list processing" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Status processing" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/colorlight-node.test.js" />
+      <test-names>
+        <test-name value="Status processing" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="colorlight-node.test.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/colorlight-node.test.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -57,6 +97,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Program list processing" />
+        <item itemvalue="Jest.Status processing" />
+        <item itemvalue="Jest.Info processing" />
         <item itemvalue="Node.js.colorlight-node.test.js" />
         <item itemvalue="Node.js.main.js" />
       </list>
@@ -76,6 +119,7 @@
       <workItem from="1652979456917" duration="47000" />
       <workItem from="1653057832607" duration="7620000" />
       <workItem from="1653230231926" duration="10168000" />
+      <workItem from="1653308059056" duration="120000" />
     </task>
     <servers />
   </component>
