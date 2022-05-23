@@ -49,11 +49,13 @@ class ColorlightProgramType{
 class ColorlightProgram{
 	constructor(programJSON,type) {
 		this.programJSON = programJSON
-		this.programJSON.type = type;
+		if(type !== undefined) {
+			this.programJSON.type = type
+		}
 	}
 
 	get type(){
-		return ColorlightProgramType.read(this.programType)
+		return this.programJSON.type
 	}
 	get name(){
 		return this.programJSON.name
@@ -70,6 +72,12 @@ function syncGetRequest(url){
 	const request = new XMLHttpRequest();
 	request.open('GET', url, false);  // `false` makes the request synchronous
 	request.send(null);
+	return request;
+}
+function syncPutRequest(url){
+	const request = new XMLHttpRequest();
+	request.open('PUT', url, false);  // `false` makes the request synchronous
+	request.send("Content-type:application/json; charset=utf-8");
 	return request;
 }
 
@@ -99,6 +107,16 @@ class ColorlightControllerConnection{
 	}
 	get networkStatusJSON(){
 								//TODO
+	}
+
+	set activeProgram(program){
+		const url = 'http://'+this.ip+'/api/vsns/sources/'+program.type+'/vsns/'+program.name+'/activated';
+		const request = syncPutRequest(url)
+		if (request.status === 200) {
+			return true; //TODO
+		}else {
+			//TODO http://192.168.8.127/api/vsns/sources/lan/vsns/TestProgram0.vsn/activated
+		}
 	}
 
 	pong(body){
@@ -168,6 +186,9 @@ class ColorlightControllerProgram{
 
 	get activeProgram(){
 		return new ColorlightProgram(this.controller.connection.programStatusJSON.playing)
+	}
+	set activeProgram(program){
+		this.controller.connection.activeProgram = program;
 	}
 	get programList(){
 		const programListListJSON = this.controller.connection.programStatusJSON.contents
