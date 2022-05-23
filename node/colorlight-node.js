@@ -66,16 +66,20 @@ class ColorlightProgram{
 	}*/
 
 }
+function syncGetRequest(url){
+	const request = new XMLHttpRequest();
+	request.open('GET', url, false);  // `false` makes the request synchronous
+	request.send(null);
+	return request;
+}
 
 class ColorlightControllerConnection{
-	constructor() {
+	constructor(ip) {
+		this.ip = ip;
 		this.controller = new ColorlightController(this)
 	}
 	get infoJSON(){
-		const request = new XMLHttpRequest();
-		request.open('GET', 'http://192.168.8.127/api/info.json', false);  // `false` makes the request synchronous
-		request.send(null);
-
+		const request = syncGetRequest('http://'+this.ip+'/api/info.json')
 		if (request.status === 200) {
 			return JSON.parse(request.responseText);
 		}else {
@@ -86,7 +90,12 @@ class ColorlightControllerConnection{
 		return JSON.parse()		//TODO
 	}
 	get programStatusJSON(){
-		return JSON.parse()		//TODO
+		const request = syncGetRequest('http://'+this.ip+'/api/vsns.json')
+		if (request.status === 200) {
+			return JSON.parse(request.responseText);
+		}else {
+			//TODO
+		}
 	}
 	get networkStatusJSON(){
 								//TODO

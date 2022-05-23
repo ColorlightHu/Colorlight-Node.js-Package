@@ -19,7 +19,9 @@ colorlightConnector.connect(
 
 
 const ColorlightConnection = require('./colorlight-node').connection;
-const connection = new ColorlightConnection();
+const connection = new ColorlightConnection("192.168.8.127");
 const controller = connection.controller;
 
 console.log(controller.info.serial)
+console.log(controller.status.memory)
+console.log(controller.program.activeProgram)
