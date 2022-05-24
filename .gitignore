@@ -103,7 +103,7 @@ dist
 # TernJS port file
 .tern-port
 
-# WebStorm
-node/.idea/
-node/.idea/workspace.xml
-node/.idea/workspace.xml
+# 
+
+node/.idea/*
+node/.node-xmlhttprequest-sync-*

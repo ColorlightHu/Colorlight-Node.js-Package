@@ -219,6 +219,12 @@ class ColorlightControllerSettings{
 		this.controller = controller;
 	}
 }
+class ColorlightControllerSensor{
+	constructor(controller) {
+		this.controller = controller;
+	}
+}
+
 class ColorlightController{
 	constructor(connection) {
 		this.connection = connection;
