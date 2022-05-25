@@ -1,3 +1,4 @@
+const {connection} = require("./colorlight-node");
 const ip = "192.168.8.133"
 
 
@@ -75,9 +76,15 @@ class DummyColorlightControllerConnection{
             "}"
         )
     }
-    get networkStatusJSON(){
-        //TODO
+
+    set activeProgram(program){
+        return true;
     }
+
+    deleteProgram = jest.fn((program)=>{
+        return true;
+    });
+
 }
 const controller = new DummyColorlightControllerConnection().controller;
 
@@ -127,9 +134,10 @@ describe("Program list processing",() =>{
     test("ProgramNameList",() =>{
         expect(controller.program.programNameList).toEqual(["TestProgram0.vsn","TestProgram1.vsn"])
     })
-    /*test("",() =>{
-        expect(controller.program.).toBe()
-    })*/
+    test("Program Delete",()=>{
+        controller.program.programList[0].delete();
+        expect(controller.connection.deleteProgram.mock.calls.length).toBe(1)
+    })
 })
 
 const hwcontroller = new ColorlightControllerConnection(ip).controller

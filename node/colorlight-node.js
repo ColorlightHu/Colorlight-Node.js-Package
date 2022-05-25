@@ -108,6 +108,7 @@ class ColorlightControllerConnection{
 			//TODO
 		}
 	}
+
 	/*get toastStatusJSON(){
 		return JSON.parse()		//TODO
 	}*/
