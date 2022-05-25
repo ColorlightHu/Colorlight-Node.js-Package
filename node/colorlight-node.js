@@ -1,3 +1,5 @@
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 class ColorlightResource{
 	constructor(total,free){
 		this.t = total;
@@ -45,100 +47,128 @@ class ColorlightProgramType{
 
 }
 class ColorlightProgram{
-	constructor(programJSON,type) {
+	constructor(controller,programJSON,type) {
+		this.controller = controller;
 		this.programJSON = programJSON
-		this.programJSON.type = type;
+		if(type !== undefined) {
+			this.programJSON.type = type
+		}
 	}
 
 	get type(){
-		return ColorlightProgramType.read(this.programType)
+		return this.programJSON.type
 	}
 	get name(){
 		return this.programJSON.name
 	}
-	/*get path(){
-
+	delete(){
+		this.controller.connection.deleteProgram(this);
 	}
-	get size(){
-
-	}*/
-
+}
+class ColorlightText{
+	constructor(text,x,y,w,h) {
+	}
 }
 
-class ColorlightControllerConnection{ //TODO dummy
-	constructor() {
+function syncGetRequest(url){
+	const request = new XMLHttpRequest();
+	request.open('GET', url, false);  // `false` makes the request synchronous
+	request.send(null);
+	return request;
+}
+function syncPutRequest(url){
+	const request = new XMLHttpRequest();
+	request.open('PUT', url, false);  // `false` makes the request synchronous
+	request.send(null);
+	return request;
+}
+function syncPostRequest(url,body){
+	const request = new XMLHttpRequest();
+	request.open('POST', url, false);  // `false` makes the request synchronous
+	request.send(body);
+	return request;
+}
+function syncDeleteRequest(url) {
+	const request = new XMLHttpRequest();
+	request.open('DELETEPOST', url, false);  // `false` makes the request synchronous
+	request.send(null);
+	return request;
+}
+
+class ColorlightControllerConnection{
+	constructor(ip) {
+		this.ip = ip;
 		this.controller = new ColorlightController(this)
 	}
 	get infoJSON(){
-		return JSON.parse(
-			'{\n' +
-			'		"info": {' +
-			'			"vername": "1.64.6", ' +
-			'			"serialno": "CLCC4000A008", ' +
-			'			"model": "c4", ' +
-			'			"up": 9989856, ' +
-			'			"mem": {\n' +
-			'				"total": 1073741824, ' +
-			'				"free": 778567680\n' +
-			'			}, ' +
-			'			"storage": {\n' +
-			'				"total": 5878841344, ' +
-			'				"free": 5878644736\n' +
-			'			},' +
-			'			"playing": {\n' +
-			'				"name": "new.vsn", ' +
-			'				"path": "/mnt/sdcard/Android/data/com.color.home/files/Ftp/program", ' +
-			'				"source": "lan" ' +
-			'			}\n' +
-			'		}' +
-			'	}'
-		);
+		const request = syncGetRequest('http://'+this.ip+'/api/info.json')
+		if (request.status === 200) {
+			return JSON.parse(request.responseText);
+		}else {
+			//TODO
+		}
 	}
-	get toastStatusJSON(){
-		return JSON.parse("{\"showProgramToast\": 1}")
-	}
+
+	/*get toastStatusJSON(){
+		return JSON.parse()		//TODO
+	}*/
 	get programStatusJSON(){
-		return JSON.parse(
-			"{\n" +
-			"    \"contents\": [\n" +
-			"        {\n" +
-			"            \"content\": [\n" +
-			"                {\n" +
-			"                    \"ableToEdit\": false,\n" +
-			"                    \"lastModifiedTime\": 1653232459000,\n" +
-			"                    \"md5\": \"\",\n" +
-			"                    \"name\": \"TestProgram0.vsn\",\n" +
-			"                    \"publishedmd5\": \"\",\n" +
-			"                    \"size\": 9030\n" +
-			"                },\n" +
-			"                {\n" +
-			"                    \"ableToEdit\": false,\n" +
-			"                    \"lastModifiedTime\": 1653232433000,\n" +
-			"                    \"md5\": \"\",\n" +
-			"                    \"name\": \"TestProgram1.vsn\",\n" +
-			"                    \"publishedmd5\": \"\",\n" +
-			"                    \"size\": 6015\n" +
-			"                }\n" +
-			"            ],\n" +
-			"            \"type\": \"lan\"\n" +
-			"        },\n" +
-			"        {\n" +
-			"            \"content\": [],\n" +
-			"            \"ressize\": 0,\n" +
-			"            \"type\": \"internet\",\n" +
-			"            \"unused\": 0\n" +
-			"        }\n" +
-			"    ],\n" +
-			"    \"playing\": {\n" +
-			"        \"name\": \"TestProgram0.vsn\",\n" +
-			"        \"type\": \"lan\"\n" +
-			"    }\n" +
-			"}"
-		)
+		const request = syncGetRequest('http://'+this.ip+'/api/vsns.json')
+		if (request.status === 200) {
+			return JSON.parse(request.responseText);
+		}else {
+			//TODO
+		}
 	}
 	get networkStatusJSON(){
-		//TODO
+								//TODO
 	}
+
+	set activeProgram(program){
+		const url = 'http://'+this.ip+'/api/vsns/sources/'+program.type+'/vsns/'+program.name+'/activated';
+		const request = syncPutRequest(url)
+		if (request.status === 200) {
+			return true; //TODO
+		}else {
+			//TODO
+		}
+	}
+
+	deleteProgram(program){
+		const url = 'http://'+this.ip+'/api/vsns/sources/'+program.type+'/vsns/'+program.name;
+		const request = syncDeleteRequest(url)
+		if (request.status === 200) {
+			return true; //TODO
+		}else {
+			//TODO
+		}
+	}
+
+	/*pong(body){
+		//this.statusJSONText = "body";
+		console.log(this)
+	}*/
+
+	/*static connect(ip,onConnected,onError){
+		/*const pingfactory = function(ip,onConnect,onError){
+			return function(){
+				const request = require("request");
+				request("http://"+ip + "/api/info.json", responseHandlerFactory(onConnect,onError));
+			}
+		}
+
+		const connector = new ColorlightControllerConnection();
+
+		const firstpong = function(body){
+			onConnected()
+		}
+		const error = ()=>{
+			console.log("ERR")
+		}
+		requestFactory(ip,"info.json",responseHandlerFactory(connector.pong,onError))
+		//pingfactory(ip,connector.pong,onError)()
+		return connector
+	}*/
 }
 class ColorlightControllerInfo{		// Static information about the controller device (firmware, serial, model)
 	constructor(controller) {
@@ -180,7 +210,10 @@ class ColorlightControllerProgram{
 	}
 
 	get activeProgram(){
-		return new ColorlightProgram(this.controller.connection.programStatusJSON.playing)
+		return new ColorlightProgram(this.controller,this.controller.connection.programStatusJSON.playing)
+	}
+	set activeProgram(program){
+		this.controller.connection.activeProgram = program;
 	}
 	get programList(){
 		const programListListJSON = this.controller.connection.programStatusJSON.contents
@@ -191,7 +224,7 @@ class ColorlightControllerProgram{
 			const programListJSON = programListListJSON[i].content
 			const type = programListListJSON[i].type
 			for (let j=0; j<programListJSON.length;j++){
-				programList.push(new ColorlightProgram(programListJSON[j],type))
+				programList.push(new ColorlightProgram(this.controller,programListJSON[j],type))
 			}
 		}
 		return programList
@@ -206,11 +239,17 @@ class ColorlightControllerProgram{
 	}
 
 }
-class ColorlightControllerSettings{
+/*class ColorlightControllerSettings{
 	constructor(controller) {
 		this.controller = controller;
 	}
 }
+class ColorlightControllerSensor{
+	constructor(controller) {
+		this.controller = controller;
+	}
+}*/
+
 class ColorlightController{
 	constructor(connection) {
 		this.connection = connection;
@@ -224,146 +263,35 @@ class ColorlightController{
 	get program(){
 		return new ColorlightControllerProgram(this)
 	}
-	get settings(){
+	/*get settings(){
 		return new ColorlightControllerSettings(this)
-	}
+	}*/
 }
 
-class ColorlightConnector{
-	constructor(ip){
-		this.ip=ip;
-		this.laststatus = new ColorlightStatus(null);
-		
-		this.onlostc = null;
-	}
-	set onLostConnection(callback){
-		this.onlostc = callback
-	}
-	connect(onConnected,onError,onLostConnection){
-		var ststus = ""
-		var firstpong = function(statusm){
-			//this.laststatus = statusm;
-			onConnected(statusm)
+//module.exports.colorlightConnector = ColorlightConnector;
+
+/*function responseHandlerFactory(onOk,onError){
+	return new Promise((error,response,body)=>{
+		if (!error && response.statusCode == 200) {
+			onOk(body);
+
 		}
-		var pong = function(statusm){
-			console.log(statusm.timestamp)
+		else{
+			onError(error)
 		}
-		var err = ()=>{
-			console.log("ERR")
-		}
-		var pingfactory = function(ip,onConnect,onError){
-			return function(){
-				const request = require("request");
-				request("http://"+ip + "/api/info.json",
-					function(error, response, body) {
-					if (!error && response.statusCode == 200) {
-						onConnect(new ColorlightStatus(body))
-					}
-					else{
-						onError()
-					}
-				});
-				return true;	//TODO
-			}
-		}
-		const success = pingfactory(this.ip,firstpong,onError)()
-		if(success){
-			setInterval(pingfactory(this.ip,pong,err), 5000);
-		}
-	}
-	disconnect(){
-		
-	}
-	get status(){
-		return this.laststatus;
-	}
+	})
+}
+function requestFactory(ip,api,responseHandler){
+	return new Promise(()=>{
+		const request = require("request");
+		request("http://"+ip + "/api/"+api, responseHandler);
+	})
+}
+
+/*function getInfoJSON(){
 	
-	
-}
-class ColorlightProgramStatus{
-	//TODO
-}
+	return new Promise
+}*/
 
-class ColorlightStatus{
-	constructor(jsonText){
-		this.statusJSON = JSON.parse(jsonText);
-	}
-	get version(){				//Version number of the device firmware
-		try{
-			var ret = this.statusJSON.info.vername;
-		} catch(e){
-			console.error(e)
-			var ret = null;
-		} finally {
-			return ret
-		}
-	}
-	get serial(){				//Serial number of the device
-		try{
-			var ret = this.statusJSON.info.serialno;
-		} catch(e){
-			console.error(e)
-			var ret = null;
-		} finally {
-			return ret
-		}
-	}
-	get model(){				//Model of the device
-		try{
-			var ret = this.statusJSON.info.model;
-		} catch(e){
-			console.error(e)
-			var ret = null;
-		} finally {
-			return ret
-		}
-	}
-	get millis(){				//Device uptime in milliseconds
-		try{
-			var ret = this.statusJSON.info.up
-		} catch(e){
-			console.error(e)
-			var ret = 0;
-		} finally {
-			return ret
-		}
-	}
-	get timestamp(){				//Device uptime in milliseconds
-		try{
-			var ret = require('pretty-ms')(this.statusJSON.info.up)
-		} catch(e){
-			console.error(e)
-			var ret = 0;
-		} finally {
-			return ret
-		}
-	}
-	get memory(){
-		try{
-			var ret = new ColorlightResource(this.statusJSON.info.mem.total,this.statusJSON.info.mem.free)
-		} catch(e){
-			console.error(e)
-			var ret = new ColorlightResource();
-		} finally {
-			return ret
-		}
-	}
-	get storage(){
-		try{
-			var ret = new ColorlightResource(this.statusJSON.info.storage.total,this.statusJSON.info.storage.free)
-		} catch(e){
-			console.error(e)
-			var ret = new ColorlightResource();
-		} finally {
-			return ret
-		}
-	}
-	get program(){
-		//TODO
-	}
-}
-
-module.exports.colorlightConnector = ColorlightConnector;
-
-module.exports.todotestConnection = ColorlightControllerConnection;
-module.exports.ColorlightController = ColorlightController;
+module.exports.connection = ColorlightControllerConnection;
+module.exports.controller = ColorlightController;

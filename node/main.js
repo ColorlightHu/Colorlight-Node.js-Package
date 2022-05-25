@@ -1,30 +1,18 @@
-const Connection = require('./colorlight-node').todotestConnection
-const testConnection = new Connection();
-const testController = testConnection.controller;
+const ColorlightConnection = require('./colorlight-node').connection;
+//const controller1 = new ColorlightConnection("192.168.8.134").controller;
+const controller2 = new ColorlightConnection("192.168.8.133").controller;
 
-console.log(testController.info.model)
-console.log(testController.info.serial)
-console.log(testController.info.version)
 
-console.log(testController.status.uptime)
-console.log(testController.status.memory.usage)
-console.log(testController.status.storage.usage)
+/*console.log("active: " + controller1.program.activeProgram.name)
+const programList = controller1.program.programList
+controller1.program.activeProgram = programList[1]
+console.log("active: " + controller1.program.activeProgram.name)*/
 
-console.log(testController.program.activeProgram.name)
-const programNameList = testController.program.programNameList
-for(let i = 0; i < programNameList.length; i++){
-    console.log(programNameList[i])
-}
-console.log(testController.program.programList)
+//console.log(controller1.program.programNameList)
+console.log(controller2.program.activeProgram)
 
-/*var colorlightController = require('./colorlight-node')
-var colorlightConnector = new colorlightController.colorlightConnector("192.168.1.37");
+controller2.program.activeProgram = controller2.program.programList[1];
 
-const onConnected = (status)=>{
-	console.log(colorlightConnector)
-}
 
-colorlightConnector.connect(
-	onConnected,
-	()=>{console.log("Connection failed")},
-	()=>{console.log("Connection lost")})*/
+
+
