@@ -1,8 +1,8 @@
 const ip = "192.168.8.133"
 
 
-const ColorlightControllerConnection = require('../colorlight-node').connection
-const ColorlightController = require('../colorlight-node').controller
+const ColorlightControllerConnection = require('./colorlight-node').connection
+const ColorlightController = require('./colorlight-node').controller
 
 class DummyColorlightControllerConnection{
     constructor() {

@@ -47,7 +47,8 @@ class ColorlightProgramType{
 
 }
 class ColorlightProgram{
-	constructor(programJSON,type) {
+	constructor(controller,programJSON,type) {
+		this.controller = controller;
 		this.programJSON = programJSON
 		if(type !== undefined) {
 			this.programJSON.type = type
@@ -60,13 +61,9 @@ class ColorlightProgram{
 	get name(){
 		return this.programJSON.name
 	}
-	/*get path(){
-
+	delete(){
+		this.controller.connection.deleteProgram(this);
 	}
-	get size(){
-
-	}*/
-
 }
 class ColorlightText{
 	constructor(text,x,y,w,h) {
@@ -82,13 +79,19 @@ function syncGetRequest(url){
 function syncPutRequest(url){
 	const request = new XMLHttpRequest();
 	request.open('PUT', url, false);  // `false` makes the request synchronous
-	request.send("Content-type:application/json; charset=utf-8");
+	request.send(null);
 	return request;
 }
 function syncPostRequest(url,body){
 	const request = new XMLHttpRequest();
 	request.open('POST', url, false);  // `false` makes the request synchronous
 	request.send(body);
+	return request;
+}
+function syncDeleteRequest(url) {
+	const request = new XMLHttpRequest();
+	request.open('DELETEPOST', url, false);  // `false` makes the request synchronous
+	request.send(null);
 	return request;
 }
 
@@ -105,9 +108,9 @@ class ColorlightControllerConnection{
 			//TODO
 		}
 	}
-	get toastStatusJSON(){
+	/*get toastStatusJSON(){
 		return JSON.parse()		//TODO
-	}
+	}*/
 	get programStatusJSON(){
 		const request = syncGetRequest('http://'+this.ip+'/api/vsns.json')
 		if (request.status === 200) {
@@ -126,22 +129,32 @@ class ColorlightControllerConnection{
 		if (request.status === 200) {
 			return true; //TODO
 		}else {
-			//TODO http://192.168.8.127/api/vsns/sources/lan/vsns/TestProgram0.vsn/activated
+			//TODO
 		}
 	}
 
-	pong(body){
-		//this.statusJSONText = "body";
-		console.log(this)
+	deleteProgram(program){
+		const url = 'http://'+this.ip+'/api/vsns/sources/'+program.type+'/vsns/'+program.name;
+		const request = syncDeleteRequest(url)
+		if (request.status === 200) {
+			return true; //TODO
+		}else {
+			//TODO
+		}
 	}
 
-	static connect(ip,onConnected,onError){
+	/*pong(body){
+		//this.statusJSONText = "body";
+		console.log(this)
+	}*/
+
+	/*static connect(ip,onConnected,onError){
 		/*const pingfactory = function(ip,onConnect,onError){
 			return function(){
 				const request = require("request");
 				request("http://"+ip + "/api/info.json", responseHandlerFactory(onConnect,onError));
 			}
-		}*/
+		}
 
 		const connector = new ColorlightControllerConnection();
 
@@ -154,7 +167,7 @@ class ColorlightControllerConnection{
 		requestFactory(ip,"info.json",responseHandlerFactory(connector.pong,onError))
 		//pingfactory(ip,connector.pong,onError)()
 		return connector
-	}
+	}*/
 }
 class ColorlightControllerInfo{		// Static information about the controller device (firmware, serial, model)
 	constructor(controller) {
@@ -196,7 +209,7 @@ class ColorlightControllerProgram{
 	}
 
 	get activeProgram(){
-		return new ColorlightProgram(this.controller.connection.programStatusJSON.playing)
+		return new ColorlightProgram(this.controller,this.controller.connection.programStatusJSON.playing)
 	}
 	set activeProgram(program){
 		this.controller.connection.activeProgram = program;
@@ -210,7 +223,7 @@ class ColorlightControllerProgram{
 			const programListJSON = programListListJSON[i].content
 			const type = programListListJSON[i].type
 			for (let j=0; j<programListJSON.length;j++){
-				programList.push(new ColorlightProgram(programListJSON[j],type))
+				programList.push(new ColorlightProgram(this.controller,programListJSON[j],type))
 			}
 		}
 		return programList
@@ -225,7 +238,7 @@ class ColorlightControllerProgram{
 	}
 
 }
-class ColorlightControllerSettings{
+/*class ColorlightControllerSettings{
 	constructor(controller) {
 		this.controller = controller;
 	}
@@ -234,7 +247,7 @@ class ColorlightControllerSensor{
 	constructor(controller) {
 		this.controller = controller;
 	}
-}
+}*/
 
 class ColorlightController{
 	constructor(connection) {
@@ -249,14 +262,14 @@ class ColorlightController{
 	get program(){
 		return new ColorlightControllerProgram(this)
 	}
-	get settings(){
+	/*get settings(){
 		return new ColorlightControllerSettings(this)
-	}
+	}*/
 }
 
 //module.exports.colorlightConnector = ColorlightConnector;
 
-function responseHandlerFactory(onOk,onError){
+/*function responseHandlerFactory(onOk,onError){
 	return new Promise((error,response,body)=>{
 		if (!error && response.statusCode == 200) {
 			onOk(body);
