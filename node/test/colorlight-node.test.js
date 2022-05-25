@@ -1,3 +1,7 @@
+const ip = "192.168.8.133"
+
+
+const ColorlightControllerConnection = require('../colorlight-node').connection
 const ColorlightController = require('../colorlight-node').controller
 
 class DummyColorlightControllerConnection{
@@ -128,3 +132,50 @@ describe("Program list processing",() =>{
     })*/
 })
 
+const hwcontroller = new ColorlightControllerConnection(ip).controller
+
+describe("HIL tests",() =>{
+    test("Version",() =>{
+        expect(hwcontroller.info.version).toMatch(/\d+\.\d+\.\d+/)
+    })
+    test("Serialno",() =>{
+        expect(hwcontroller.info.serial).toMatch(/CLC........./)
+    })
+    test("Model",() =>{
+        expect(hwcontroller.info.model).toMatch(/.+/)
+    })
+    test("Uptime",() =>{
+        expect(hwcontroller.status.uptime).toBeGreaterThan(0)
+    })
+    test("Memory",() =>{
+        const memory = controller.status.memory;
+        const total = memory.total;
+        const free = memory.free;
+        const usage = memory.usage;
+
+        expect(total).toBeGreaterThan(0)
+        expect(free).toBeLessThan(total)
+        expect(usage).toBeCloseTo(1-(free/total))
+    })
+    test("Storage",() =>{
+        const storage = controller.status.storage;
+        const total = storage.total;
+        const free = storage.free;
+        const usage = storage.usage;
+
+        expect(total).toBeGreaterThan(0)
+        expect(free).toBeLessThan(total)
+        expect(usage).toBeCloseTo(1-(free/total))
+    })
+    test("Active program",() =>{
+        const activeProgram = hwcontroller.program.activeProgram;
+        expect(activeProgram.name).toMatch(/.+\.vsn/)
+        //expect(activeProgram.type).toDO
+    })
+    test("Active program type",() =>{
+        expect(controller.program.activeProgram.type).toBe("lan")
+    })
+    test("ProgramNameList",() =>{
+        //expect(controller.program.programNameList).toEqual(["TestProgram0.vsn","TestProgram1.vsn"])
+    })
+})
