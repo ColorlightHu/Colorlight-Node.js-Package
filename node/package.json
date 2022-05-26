@@ -17,9 +17,6 @@
   },
   "homepage": "https://github.com/ColorlightHu/Colorlight-Node.js-Package#readme",
   "dependencies": {
-    "express": "^4.18.1",
-    "pretty-ms": "^7.0.1",
-    "request": "^2.88.2",
     "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
