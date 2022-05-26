@@ -91,6 +91,9 @@ function syncDeleteRequest(url) {
 	return request;
 }
 
+/**
+ * @param ip Colorlight device IP address
+ */
 class ColorlightControllerConnection{
 	constructor(ip) {
 		this.ip = ip;
@@ -133,18 +136,31 @@ class ColorlightControllerConnection{
 		}
 	}
 }
+
 class ColorlightControllerInfo{		// Static information about the controller device (firmware, serial, model)
 	constructor(controller) {
 		this.controller = controller;
 	}
 
-	get version(){					// Version number of the device firmware
+	/**
+	 * Version getter
+	 * @returns {string} Version number of the device firmware
+	 */
+	get version(){
 		return this.controller.connection.infoJSON.info.vername
 	}
-	get serial(){					// Serial number of the device
+	/**
+	 * Serial getter
+	 * @returns {string} Serial number of the device
+	 */
+	get serial(){
 		return this.controller.connection.infoJSON.info.serialno
 	}
-	get model(){					// Model of the device
+	/**
+	 *
+	 * @returns {string} Model of the device
+	 */
+	get model(){
 		return this.controller.connection.infoJSON.info.model
 	}
 }
@@ -153,15 +169,27 @@ class ColorlightControllerStatus{	// Dynamic status information about the device
 		this.controller = controller;
 	}
 
-	get uptime(){					// Device uptime in milliseconds
+	/**
+	 * Uptime getter
+	 * @returns {int} Device uptime in milliseconds
+	 */
+	get uptime(){
 		return this.controller.connection.infoJSON.info.up
 	}
-	get memory(){					// Device memory data objet
+	/**
+	 * Memory status getter
+	 * @returns {ColorlightResource} Device memory data object
+	 */
+	get memory(){
 		const total = this.controller.connection.infoJSON.info.mem.total
 		const free = this.controller.connection.infoJSON.info.mem.free
 		return new ColorlightResource(total,free);
 	}
-	get storage(){					// Device storage data object
+	/**
+	 * Storage status getter
+	 * @returns {ColorlightResource} Device storage data object
+	 */
+	get storage(){
 		const total = this.controller.connection.infoJSON.info.storage.total
 		const free = this.controller.connection.infoJSON.info.storage.free
 		return new ColorlightResource(total,free);
@@ -172,12 +200,25 @@ class ColorlightControllerProgram{
 		this.controller = controller;
 	}
 
+	/**
+	 * Active program getter
+	 * @returns {ColorlightProgram}
+	 */
 	get activeProgram(){
 		return new ColorlightProgram(this.controller,this.controller.connection.programStatusJSON.playing)
 	}
+	/**
+	 * Active program setter
+	 * @param program
+	 */
 	set activeProgram(program){
 		this.controller.connection.activeProgram = program;
 	}
+
+	/**
+	 * Program list getter
+	 * @returns {[ColorlightProgram]} Program list
+	 */
 	get programList(){
 		const programListListJSON = this.controller.connection.programStatusJSON.contents
 
@@ -192,6 +233,10 @@ class ColorlightControllerProgram{
 		}
 		return programList
 	}
+	/**
+	 * Program name list getter
+	 * @returns {[string]} Program name list
+	 */
 	get programNameList(){
 		const pl = this.programList;
 		const nameList = []
@@ -206,12 +251,25 @@ class ColorlightController{
 	constructor(connection) {
 		this.connection = connection;
 	}
+
+	/**
+	 * Static information about the controller (serial, model, firmware)
+	 * @returns {ColorlightControllerInfo}
+	 */
 	get info(){
 		return new ColorlightControllerInfo(this)
 	}
+	/**
+	 * Dynamic information about the controller (uptime, memory, storage)
+	 * @returns {ColorlightControllerStatus}
+	 */
 	get status(){
 		return new ColorlightControllerStatus(this)
 	}
+	/**
+	 * Program information and control
+	 * @returns {ColorlightControllerProgram}
+	 */
 	get program(){
 		return new ColorlightControllerProgram(this)
 	}
