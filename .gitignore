@@ -107,3 +107,4 @@ dist
 
 node/.idea/*
 node/.node-xmlhttprequest-sync-*
+node/.idea/workspace.xml

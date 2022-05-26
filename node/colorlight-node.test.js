@@ -1,13 +1,10 @@
-const {connection} = require("./colorlight-node");
 const ip = "192.168.8.133"
 
+const ColorlightControllerConnection = require('./colorlight-node')
 
-const ColorlightControllerConnection = require('./colorlight-node').connection
-const ColorlightController = require('./colorlight-node').controller
-
-class DummyColorlightControllerConnection{
+class DummyColorlightControllerConnection extends ColorlightControllerConnection{
     constructor() {
-        this.controller = new ColorlightController(this)
+        super(null);
     }
     get infoJSON(){
         return JSON.parse(
@@ -33,9 +30,6 @@ class DummyColorlightControllerConnection{
             '		}' +
             '	}'
         );
-    }
-    get toastStatusJSON(){
-        return JSON.parse("{\"showProgramToast\": 1}")
     }
     get programStatusJSON(){
         return JSON.parse(
@@ -182,8 +176,5 @@ describe("HIL tests",() =>{
     })
     test("Active program type",() =>{
         expect(controller.program.activeProgram.type).toBe("lan")
-    })
-    test("ProgramNameList",() =>{
-        //expect(controller.program.programNameList).toEqual(["TestProgram0.vsn","TestProgram1.vsn"])
     })
 })
