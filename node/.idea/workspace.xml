@@ -121,11 +121,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Jest.HIL tests" />
-      <item itemvalue="Jest.HIL tests.Memory" />
       <item itemvalue="Jest.Program list processing" />
       <item itemvalue="Jest.Status processing" />
       <item itemvalue="Jest.Status processing (1)" />
+      <item itemvalue="Jest.HIL tests" />
+      <item itemvalue="Jest.HIL tests.Memory" />
       <item itemvalue="Node.js.main.js" />
     </list>
     <recent_temporary>
@@ -163,8 +163,10 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/node$HIL_tests.info" NAME="HIL tests Coverage Results" MODIFIED="1653484819321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/node$Program_list_processing.info" NAME="Program list processing Coverage Results" MODIFIED="1653387749063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/node$Info_processing.info" NAME="Info processing Coverage Results" MODIFIED="1653387729446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/node$Info_processing.info" NAME="Info processing Coverage Results" MODIFIED="1653484792781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/node$Status_processing__1_.info" NAME="Status processing (1) Coverage Results" MODIFIED="1653387740576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/node$Test.info" NAME="Test Coverage Results" MODIFIED="1653566190298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
