@@ -154,7 +154,7 @@
       <workItem from="1653314022603" duration="11778000" />
       <workItem from="1653417855948" duration="693000" />
       <workItem from="1653480429105" duration="7938000" />
-      <workItem from="1653565857536" duration="290000" />
+      <workItem from="1653565857536" duration="700000" />
     </task>
     <servers />
   </component>
@@ -177,6 +177,6 @@
     <SUITE FILE_PATH="coverage/node$Program_list_processing.info" NAME="Program list processing Coverage Results" MODIFIED="1653387749063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/node$Info_processing.info" NAME="Info processing Coverage Results" MODIFIED="1653484792781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/node$Status_processing__1_.info" NAME="Status processing (1) Coverage Results" MODIFIED="1653387740576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/node$Test.info" NAME="Test Coverage Results" MODIFIED="1653565879134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/node$Test.info" NAME="Test Coverage Results" MODIFIED="1653566190298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

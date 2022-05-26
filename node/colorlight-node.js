@@ -217,5 +217,4 @@ class ColorlightController{
 	}
 }
 
-module.exports.connection = ColorlightControllerConnection;
-module.exports.controller = ColorlightController;
+module.exports = ColorlightControllerConnection;
