@@ -154,23 +154,12 @@
       <workItem from="1653314022603" duration="11778000" />
       <workItem from="1653417855948" duration="693000" />
       <workItem from="1653480429105" duration="7938000" />
-      <workItem from="1653565857536" duration="800000" />
+      <workItem from="1653565857536" duration="1286000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/colorlight-node.js</url>
-          <line>49</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/node$HIL_tests.info" NAME="HIL tests Coverage Results" MODIFIED="1653484819321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
