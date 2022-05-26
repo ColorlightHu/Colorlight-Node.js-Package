@@ -29,28 +29,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/szant/Documents/GitHub/Colorlight-Node.js-Package/node/main.js&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;C:/Users/szant/Documents/GitHub/Colorlight-Node.js-Package/node/node_modules/jest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/szant/Documents/GitHub/Colorlight-Node.js-Package/node",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/Users/szant/Documents/GitHub/Colorlight-Node.js-Package/node/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\szant\Documents\GitHub\Colorlight-Node.js-Package\node\test" />
       <recent name="C:\Users\szant\Documents\GitHub\Colorlight-Node.js-Package\node" />
+      <recent name="C:\Users\szant\Documents\GitHub\Colorlight-Node.js-Package\node\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.HIL tests">
+  <component name="RunManager" selected="Jest.Test">
     <configuration name="HIL tests" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -78,7 +78,7 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Program list processing" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Info processing" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -86,55 +86,53 @@
       <envs />
       <scope-kind value="SUITE" />
       <test-file value="$PROJECT_DIR$/test/colorlight-node.test.js" />
+      <test-names>
+        <test-name value="Info processing" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Program list processing.ProgramNameList" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/colorlight-node.test.js" />
       <test-names>
         <test-name value="Program list processing" />
+        <test-name value="ProgramNameList" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Status processing (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Test" type="JavaScriptTestRunnerJest" temporary="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/colorlight-node.test.js" />
-      <test-names>
-        <test-name value="Status processing" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Status processing" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/test/HIL-tests.js" />
-      <test-names>
-        <test-name value="Status processing" />
-      </test-names>
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/colorlight-node.test.js" />
       <method v="2" />
     </configuration>
     <configuration name="main.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="main.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Jest.Program list processing.ProgramNameList" />
       <item itemvalue="Jest.HIL tests" />
       <item itemvalue="Jest.HIL tests.Memory" />
-      <item itemvalue="Jest.Program list processing" />
-      <item itemvalue="Jest.Status processing" />
-      <item itemvalue="Jest.Status processing (1)" />
+      <item itemvalue="Jest.Info processing" />
+      <item itemvalue="Jest.Test" />
       <item itemvalue="Node.js.main.js" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.Test" />
+        <item itemvalue="Jest.Program list processing.ProgramNameList" />
         <item itemvalue="Jest.HIL tests" />
+        <item itemvalue="Jest.Info processing" />
         <item itemvalue="Jest.HIL tests.Memory" />
-        <item itemvalue="Jest.Status processing" />
-        <item itemvalue="Jest.Program list processing" />
-        <item itemvalue="Jest.Status processing (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -155,16 +153,30 @@
       <workItem from="1653308059056" duration="2666000" />
       <workItem from="1653314022603" duration="11778000" />
       <workItem from="1653417855948" duration="693000" />
-      <workItem from="1653480429105" duration="2924000" />
+      <workItem from="1653480429105" duration="7938000" />
+      <workItem from="1653565857536" duration="290000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/colorlight-node.js</url>
+          <line>49</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/node$HIL_tests.info" NAME="HIL tests Coverage Results" MODIFIED="1653484819321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/node$Program_list_processing.info" NAME="Program list processing Coverage Results" MODIFIED="1653387749063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/node$Info_processing.info" NAME="Info processing Coverage Results" MODIFIED="1653387729446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/node$Info_processing.info" NAME="Info processing Coverage Results" MODIFIED="1653484792781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/node$Status_processing__1_.info" NAME="Status processing (1) Coverage Results" MODIFIED="1653387740576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/node$Test.info" NAME="Test Coverage Results" MODIFIED="1653565879134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="JestJavaScriptTestRunnerCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
