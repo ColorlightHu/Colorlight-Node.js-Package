@@ -31,9 +31,6 @@ class DummyColorlightControllerConnection extends ColorlightControllerConnection
             '	}'
         );
     }
-    get toastStatusJSON(){
-        return JSON.parse("{\"showProgramToast\": 1}")
-    }
     get programStatusJSON(){
         return JSON.parse(
             "{\n" +
@@ -179,8 +176,5 @@ describe("HIL tests",() =>{
     })
     test("Active program type",() =>{
         expect(controller.program.activeProgram.type).toBe("lan")
-    })
-    test("ProgramNameList",() =>{
-        //expect(controller.program.programNameList).toEqual(["TestProgram0.vsn","TestProgram1.vsn"])
     })
 })
