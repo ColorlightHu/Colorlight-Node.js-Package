@@ -65,6 +65,40 @@ class ColorlightProgram{
 		this.controller.connection.deleteProgram(this);
 	}
 }
+class ColorlightSingleLineTextProgram{
+	constructor(text,posx,posy,width,height) {
+		this.text = text;
+		this.x = posx;
+		this.y = posy;
+		this.width = width;
+		this.height = height;
+		this.font = {
+			name : "default",
+			size : 8,
+			style: {
+				i:0,
+				b:0,
+				u:0
+			},
+			color:"0xFFFF0000"
+		}
+		this.bgcolor="0xFFFF0000"
+	}
+
+	set scroll(scroll){
+		if(scroll){
+			this.scroll= new class Scroll{
+				constructor() {
+					this.dir = "left";
+					this.isconnected = 0;
+					this.speed = 60;
+				}
+			}()
+		}else{
+			this.scroll = undefined;
+		}
+	}
+}
 
 function syncGetRequest(url){
 	const request = new XMLHttpRequest();

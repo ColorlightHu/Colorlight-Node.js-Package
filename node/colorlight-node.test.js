@@ -1,4 +1,4 @@
-const ip = "192.168.8.133"
+const ip = "192.168.1.37"
 
 const ColorlightControllerConnection = require('./colorlight-node')
 
