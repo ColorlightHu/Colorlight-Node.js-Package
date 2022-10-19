@@ -309,4 +309,11 @@ class ColorlightController{
 	}
 }
 
-module.exports = ColorlightControllerConnection;
+function connect(ip){
+	const connection = new ColorlightControllerConnection(ip)
+	return connection.controller;
+}
+
+module.exports.connection = ColorlightControllerConnection;
+module.exports.cotroller = ColorlightController;
+module.exports.connect = connect;
