@@ -15,6 +15,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache-dependency-path: node/package-lock.json
+          cache: 'npm'
       - run: npm install
       - run: npm ci
       - run: npm test
