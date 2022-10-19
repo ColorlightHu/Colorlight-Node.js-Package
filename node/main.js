@@ -1,5 +1,5 @@
-const ColorlightConnection = require('./colorlight-node').connection;
-const controller = new ColorlightConnection("192.168.8.133").controller;
+const ColorlightConnection = require('./colorlight-node');
+const controller = new ColorlightConnection("192.168.1.37").controller;
 
 console.log(controller.program.activeProgram)
 
