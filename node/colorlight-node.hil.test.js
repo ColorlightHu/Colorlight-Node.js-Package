@@ -1,4 +1,4 @@
-const ColorlightControllerConnection = require("./colorlight-node").connection;
+const ColorlightControllerConnection = require("./colorlight-node").Connection;
 
 const ip = "192.168.1.37"
 

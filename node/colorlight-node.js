@@ -80,9 +80,9 @@ class ColorlightSingleLineTextProgram{
 				b:0,
 				u:0
 			},
-			color:"0xFFFF0000"
+			color:"0xFFFFFFFF"
 		}
-		this.bgcolor="0xFFFF0000"
+		this.bgcolor="0x00000000"
 	}
 
 	set scroll(scroll){
@@ -153,6 +153,17 @@ class ColorlightControllerConnection{
 	set activeProgram(program){
 		const url = 'http://'+this.ip+'/api/vsns/sources/'+program.type+'/vsns/'+program.name+'/activated';
 		const request = syncPutRequest(url)
+		if (request.status === 200) {
+			return true; //TODO
+		}else {
+			//TODO
+		}
+	}
+
+	set singleLineTextProgram(singleLineTextProgram){
+		const url = 'http://192.168.1.37/api/program/singletext';
+		const body =  JSON.stringify(singleLineTextProgram)
+		const request = syncPostRequest(url,body);
 		if (request.status === 200) {
 			return true; //TODO
 		}else {
@@ -243,7 +254,7 @@ class ColorlightControllerProgram{
 	}
 	/**
 	 * Active program setter
-	 * @param program
+	 * @param {ColorlightProgram} program
 	 */
 	set activeProgram(program){
 		this.controller.connection.activeProgram = program;
@@ -280,6 +291,22 @@ class ColorlightControllerProgram{
 		return nameList;
 	}
 
+	/**
+	 * Delete program
+	 * @param {ColorlightSingleLineTextProgram} program Program
+	 */
+	delete(program){
+		this.controller.connection.deleteProgram(program)
+	}
+
+	/**
+	 * Send single line program
+	 * @param {ColorlightSingleLineTextProgram} program Program
+	 * */
+	set singleLineProgram(program){
+		this.controller.connection.singleLineTextProgram = program;
+	}
+
 }
 class ColorlightController{
 	constructor(connection) {
@@ -314,6 +341,11 @@ function connect(ip){
 	return connection.controller;
 }
 
-module.exports.connection = ColorlightControllerConnection;
-module.exports.cotroller = ColorlightController;
-module.exports.connect = connect;
+
+module.exports = {
+	Connection: 	ColorlightControllerConnection,
+	Controller: 	ColorlightController,
+	Program:		ColorlightProgram,
+	SingleLineText:	ColorlightSingleLineTextProgram,
+	connect : connect
+}
