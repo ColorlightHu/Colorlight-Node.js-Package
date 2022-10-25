@@ -2,7 +2,7 @@
   "name": "colorlight-node.js-package",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "colorlight-node.js",
   "scripts": {
     "test": "jest colorlight-node.test.js"
   },
