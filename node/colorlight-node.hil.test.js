@@ -1,4 +1,4 @@
-const ColorlightControllerConnection = require("./colorlight-node");
+const ColorlightControllerConnection = require("./colorlight-node").Connection;
 
 const ip = "192.168.1.37"
 
@@ -18,7 +18,7 @@ describe("HIL tests",() =>{
         expect(hwcontroller.status.uptime).toBeGreaterThan(0)
     })
     test("Memory",() =>{
-        const memory = controller.status.memory;
+        const memory = hwcontroller.status.memory;
         const total = memory.total;
         const free = memory.free;
         const usage = memory.usage;
@@ -28,7 +28,7 @@ describe("HIL tests",() =>{
         expect(usage).toBeCloseTo(1-(free/total))
     })
     test("Storage",() =>{
-        const storage = controller.status.storage;
+        const storage = hwcontroller.status.storage;
         const total = storage.total;
         const free = storage.free;
         const usage = storage.usage;
@@ -43,6 +43,6 @@ describe("HIL tests",() =>{
         //expect(activeProgram.type).toDO
     })
     test("Active program type",() =>{
-        expect(controller.program.activeProgram.type).toBe("lan")
+        expect(hwcontroller.program.activeProgram.type).toBe("lan")
     })
 })

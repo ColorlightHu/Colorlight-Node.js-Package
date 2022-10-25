@@ -1,4 +1,4 @@
-const ColorlightControllerConnection = require('./colorlight-node')
+const ColorlightControllerConnection = require('./colorlight-node').Connection
 
 class DummyColorlightControllerConnection extends ColorlightControllerConnection{
     constructor() {
